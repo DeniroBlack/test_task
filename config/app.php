@@ -123,4 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'redis_keys' => [
+        'rows_count_prefix' => 'import-excel-data:progress:',
+        'rows_names_prefix' => 'import-excel-data:names:',
+        'rows_uploaded_prefix' => 'import_excel_data_uploaded',
+    ],
 ];

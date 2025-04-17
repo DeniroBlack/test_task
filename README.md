@@ -1,61 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Задание 1:
+Создать laravel-проект в git-репозитории (подойдет любой публичный сервис, например github). Первым коммитом залить чистый фреймворк, следом — реализацию задания.
+Представьте, что это код в составе большого проекта, который поддерживается годами, и механика импорта будет использоваться реальными людьми: контент-менеджеры будут импортировать файлы, программисты - вносить доработки и поддерживать в том числе и эту часть проекта. Учитывайте человеческий фактор. Можно показать подходы проектирования, подходящие под задачу.
+Например, подходы, которые облегчат дальнейшую разработку и поддержку.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+Реализовать загрузку excel файла (xlsx) через форму.
+Поля excel: 
+ * id
+ * name
+ * date (d.m.Y)
+Данные из файла хранить в БД.
+Проанализировать данные в excel-файле и на основе этого анализа реализовать валидацию данных из excel.
+Строки excel, не прошедшие валидацию, пропускать.
+В конце импорта вывести в текстовый файл все сообщения о ошибках валидации строк, в виде:
+<номер строки> - <ошибка1>, <ошибка2>, …
+и запушить сгенерированный файл result.txt с отчётом о ошибках в репозиторий с тестовым заданием, отдельным коммитом.
+Импортировать файл в БД.
+Прогресс парсинга файла хранить в redis (уникальный ключ + количество обработанных строк).
+Для парсинга excel можете использовать любой пакет composer, но процесс импорта необходимо реализовать самостоятельно.
+Реализовать RESTful API контроллер для получения импортированных данных из базы с группировкой по date:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```
+[
+    {
+    date: ‘xxxx-xx-xx’,
+        items: [
+            {
+                …
+            },
+            {
+                …
+            }
+        ]
+    },
+    {
+    date: ‘zzzz-zz-zz’,
+        items: ….
+    },
+]
+```
+Реализуйте через laravel echo передачу event-а на создание записи в rows
+Напишите тесты
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Задание 2:
+Проанализируйте задание 1 и составьте список уточняющих вопросов для менеджера, который его составил. Опишите на основании своего анализа задание 1 в виде задачи, которую можно передать джуниору. Поясните ход своих мыслей. Результат сохранить в файл “task2.txt” и закоммитить.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Задание 3:
+Расскажите подробнее про вашу реализацию:
+Причины выбора именно этого пакета composer для парсинга excel.
+Чем вы руководствовались, когда определяли правила валидации excel-файла.
+Как вы анализировали производительность вашего решения?
+Будет ли ваше решение стабильно при увеличении количества строк в файле в 100 раз?
+Что можно было бы улучшить в вашей реализации?
+Результат сохранить в файл “task3.txt” и закоммитить.
