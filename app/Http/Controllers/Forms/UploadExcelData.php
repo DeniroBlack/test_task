@@ -49,7 +49,7 @@ class UploadExcelData extends Controller {
         $sessionKeys = [];
         try {
             $redisValue = Redis::get(config('app.redis_keys.rows_uploaded_prefix').session()->getId());
-            $sessionKeys = json_decode($redisValue !== false ? $redisValue : '[]', true);
+            $sessionKeys = json_decode($redisValue !== null ? $redisValue : '[]', true);
         } catch(\Exception $th) {}
         return $sessionKeys;
     }
